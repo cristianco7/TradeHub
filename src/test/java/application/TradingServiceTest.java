@@ -112,4 +112,23 @@ public class TradingServiceTest {
         assertEquals(BigDecimal.valueOf(100), account.getCashBalance());
         assertEquals(0, account.getPortfolio().getQuantity("TSLA"));
     }
+
+    @Test
+    void shouldRejectSellWhenAccountHasInsufficientShares() {
+        Order order = new Order(
+                "ORD-4",
+                "TX-300",
+                "B",
+                OrderType.SELL,
+                new OrderDetails("AAPL", 1, BigDecimal.valueOf(10))
+        );
+
+        assertThrows(InsufficientSharesException.class, () -> tradingService.process(order));
+
+        Account account = accountRepository.findById("B").orElseThrow();
+
+        assertEquals(BigDecimal.valueOf(100), account.getCashBalance());
+        assertEquals(0, account.getPortfolio().getQuantity("AAPL"));
+
+    }
 }
