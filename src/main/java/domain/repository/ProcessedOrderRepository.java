@@ -3,7 +3,7 @@ package domain.repository;
 import domain.model.ProcessedOrderKey;
 
 public interface ProcessedOrderRepository {
-    boolean exits(ProcessedOrderKey key);
+    boolean exists(ProcessedOrderKey key);
 
     void save(ProcessedOrderKey key);
 }

@@ -10,7 +10,7 @@ public class InMemoryProcessedOrderRepository implements ProcessedOrderRepositor
     private final Set<ProcessedOrderKey> processedOrders = new HashSet<>();
 
     @Override
-    public boolean exits(ProcessedOrderKey key) {
+    public boolean exists(ProcessedOrderKey key) {
         return processedOrders.contains(key);
     }
 

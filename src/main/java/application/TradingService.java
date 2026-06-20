@@ -22,7 +22,7 @@ public class TradingService {
                 order.getType()
         );
 
-        if (processedOrderRepository.exits(processedOrderKey)) {
+        if (processedOrderRepository.exists(processedOrderKey)) {
             throw new DuplicateOrderException("Order has already been processed");
         }
 

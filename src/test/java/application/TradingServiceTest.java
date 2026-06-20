@@ -2,6 +2,7 @@ package application;
 
 import domain.exception.DuplicateOrderException;
 import domain.exception.InsufficientFundsException;
+import domain.exception.InsufficientSharesException;
 import domain.model.*;
 import infrastructure.repository.InMemoryAccountRepository;
 import infrastructure.repository.InMemoryProcessedOrderRepository;
