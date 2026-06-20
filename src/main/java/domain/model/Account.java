@@ -10,13 +10,13 @@ public class Account {
     private final String id;
     private final String ownerName;
     private BigDecimal cashBalance;
-    private final PortFolio portFolio;
+    private final Portfolio portfolio;
 
-    public Account(String id, String ownerName, PortFolio portFolio, BigDecimal cashBalance) {
+    public Account(String id, String ownerName, BigDecimal cashBalance, Portfolio portFolio) {
         this.id = id;
         this.ownerName = ownerName;
-        this.portFolio = portFolio;
         this.cashBalance = cashBalance;
+        this.portfolio = portFolio;
     }
 
     public void buy(String ticker, int quantity, BigDecimal price) {
@@ -27,11 +27,11 @@ public class Account {
             throw new InsufficientFundsException("Insufficient fund to complete buy operation");
         }
         cashBalance = cashBalance.subtract(totalWithCommission);
-        portFolio.add(ticker, quantity);
+        portfolio.add(ticker, quantity);
     }
 
     public void sell(String ticker, int quantity, BigDecimal price) {
-        portFolio.remove(ticker, quantity);
+        portfolio.remove(ticker, quantity);
 
         BigDecimal operationTotal = price.multiply(BigDecimal.valueOf(quantity));
         BigDecimal totalAfterCommission = operationTotal.subtract(COMMISSION);
@@ -51,7 +51,7 @@ public class Account {
         return cashBalance;
     }
 
-    public PortFolio getPortFolio() {
-        return portFolio;
+    public Portfolio getPortfolio() {
+        return portfolio;
     }
 }

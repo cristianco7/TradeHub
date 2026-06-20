@@ -5,7 +5,7 @@ import domain.exception.InsufficientSharesException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PortFolio {
+public class Portfolio {
     private final Map<String, Integer> holdings = new HashMap<>();
 
     public int getQuantity(String ticker) {
